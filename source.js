@@ -24,6 +24,28 @@ function operate(a, b, operator){
         return divide(a, b);
     }
 }
+const buttons = document.querySelectorAll('.numbers, .operators');
+buttons.forEach(button => {
+    button.addEventListener('click', () =>{
+        const display = document.querySelector('.display');
+        display.textContent += button.textContent;
+    }); 
+});
+const clearButton = document.querySelector('.clear');
+clearButton.addEventListener('click', ()=>{
+    const display = document.querySelector('.display');
+    display.textContent = '';
+});
+const equalSignButton = document.querySelector('#equal-sign');
+equalSignButton.addEventListener('click', () =>{
+    const display = document.querySelector('.display');
+    const equation = display.textContent;
+    firstNumber = equation.charAt(0);
+    operator = equation.charAt(1);
+    secondNumber = equation.charAt(2);
+    const total = operate(parseInt(firstNumber), parseInt(secondNumber), operator);
+    display.textContent = total;
+});
 let firstNumber = 0;
 let secondNumber = 0;
 let operator = '';
