@@ -38,8 +38,12 @@ const operatorButtons = document.querySelectorAll('.operators');
 operatorButtons.forEach(button =>{
     button.addEventListener('click', () =>{
         display = getDisplay();
-        if(display.textContent[0] === '-'){
-            negativeNumber = true;
+        if (display.textContent.length !== 1){
+            length = display.textContent.length
+            operator = display.textContent.slice(length -1 , length);
+            firstNumber = display.textContent.slice(0, length - 1);
+            console.log(operator)
+            console.log(firstNumber)
         }
     });
 });
@@ -50,28 +54,22 @@ clearButton.addEventListener('click', ()=>{
     firstNumber = 0;
     secondNumber = 0;
     operator = '';
-    negativeNumber = false;
 });
 const equalSignButton = document.querySelector('#equal-sign');
 equalSignButton.addEventListener('click', () =>{
     display = getDisplay()
-    const equation = display.textContent;
-    const splitEquation = equation.split(operators);
-    console.log(splitEquation);
-    firstNumber = splitEquation[0];
-    operator = splitEquation[1];
-    secondNumber = splitEquation[2];
-    if (negativeNumber){
-        firstNumber = `-${splitEquation[2]}`;
-        operator = splitEquation[3];
-        secondNumber = splitEquation[4];
+    secondNumber = display.textContent.split(/[-/*+]/).pop();
+    console.log(secondNumber);
+    const total = operate(parseFloat(firstNumber), parseFloat(secondNumber), operator);
+    const totalAsString = String(total);
+    if (totalAsString.includes('.')){
+        let roundedTotal = total.toFixed(2);
+        display.textContent = roundedTotal;
     }
-    const total = operate(parseInt(firstNumber), parseInt(secondNumber), operator);
-    let roundedTotal = total.toFixed(2)
-    display.textContent = roundedTotal;
+    else{
+        display.textContent = total;
+    }
 });
 let firstNumber = 0;
 let secondNumber = 0;
 let operator = '';
-const operators = /([+\-*/])/g;
-let negativeNumber = false;
