@@ -81,6 +81,15 @@ equalSignButton.addEventListener('click', () =>{
         display.textContent = total;
     }
 });
+const backSpaceButton = document.querySelector('.backspace');
+backSpaceButton.addEventListener('click',() =>{
+    let display = getDisplay();
+    if(display.textContent.length > 0){
+        subString = display.textContent.substring(0, display.textContent.length - 1);
+        console.log(subString, display.textContent)
+        display.textContent = subString;
+    }
+});
 let firstNumber = 0;
 let secondNumber = 0;
 let operator = '';
