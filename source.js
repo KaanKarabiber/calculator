@@ -29,27 +29,35 @@ function getDisplay(){
 }
 const buttons = document.querySelectorAll('.numbers, .operators');
 buttons.forEach(button => {
-    button.addEventListener('click', () =>{
-        display = getDisplay()
+    button.addEventListener('click', (event) =>{
+        let display = getDisplay();
+        let displayLength = display.textContent.length;
+        let lastChar = display.textContent.charAt(displayLength -1);
+        const buttonText = event.target.textContent;
+        if (lastChar === '+' || lastChar === '-' || lastChar === '*' || lastChar === '/'){
+            if(['+', '-', '/', '*'].includes(buttonText)){
+                let result = display.textContent.substring(0, displayLength - 1);
+                display.textContent = result;
+            }
+        }
         display.textContent += button.textContent;
+        
     }); 
 });
 const operatorButtons = document.querySelectorAll('.operators');
 operatorButtons.forEach(button =>{
     button.addEventListener('click', () =>{
-        display = getDisplay();
-        if (display.textContent.length !== 1){
-            length = display.textContent.length
-            operator = display.textContent.slice(length -1 , length);
-            firstNumber = display.textContent.slice(0, length - 1);
-            console.log(operator)
-            console.log(firstNumber)
+        let display = getDisplay();
+        let displayLength = display.textContent.length;
+        if (displayLength !== 1){
+            operator = display.textContent.slice(displayLength - 1, displayLength);
+            firstNumber = display.textContent.slice(0, displayLength - 1);
         }
     });
 });
 const clearButton = document.querySelector('.clear');
 clearButton.addEventListener('click', ()=>{
-    display = getDisplay()
+    let display = getDisplay()
     display.textContent = '';
     firstNumber = 0;
     secondNumber = 0;
@@ -57,16 +65,19 @@ clearButton.addEventListener('click', ()=>{
 });
 const equalSignButton = document.querySelector('#equal-sign');
 equalSignButton.addEventListener('click', () =>{
-    display = getDisplay()
+    let display = getDisplay()
     secondNumber = display.textContent.split(/[-/*+]/).pop();
-    console.log(secondNumber);
     const total = operate(parseFloat(firstNumber), parseFloat(secondNumber), operator);
     const totalAsString = String(total);
     if (totalAsString.includes('.')){
         let roundedTotal = total.toFixed(2);
         display.textContent = roundedTotal;
+        secondNumber = 0;
+        operator = '';
     }
     else{
+        secondNumber = 0;
+        operator = '';
         display.textContent = total;
     }
 });
