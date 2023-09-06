@@ -23,10 +23,21 @@ function operate(a, b, operator){
     if(operator === '/'){
         return divide(a, b);
     }
+    else{
+        return 'not an operator';
+    }
 }
 function getDisplay(){
     return document.querySelector('.display');
 }
+document.addEventListener('keydown', (event) => {
+    const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '*', '/', '+', '.', 'Backspace', 'Enter'];
+    if (allowedKeys.includes(event.key)) {
+      event.preventDefault();
+      let display = getDisplay();
+      display.textContent += event.key;
+    }
+  });
 const buttons = document.querySelectorAll('.numbers, .operators');
 buttons.forEach(button => {
     button.addEventListener('click', (event) =>{
@@ -40,8 +51,17 @@ buttons.forEach(button => {
                 display.textContent = result;
             }
         }
-        display.textContent += button.textContent;
         
+        if(buttonText === '.' && dotLimit >= 1){
+            display.textContent += button.textContent;
+            dotLimit = 0;
+        }
+        else if(buttonText === '.'){
+            
+        }
+        else{
+            display.textContent += button.textContent;
+        }
     }); 
 });
 const operatorButtons = document.querySelectorAll('.operators');
@@ -53,6 +73,7 @@ operatorButtons.forEach(button =>{
             operator = display.textContent.slice(displayLength - 1, displayLength);
             firstNumber = display.textContent.slice(0, displayLength - 1);
         }
+        dotLimit = 1;
     });
 });
 const clearButton = document.querySelector('.clear');
@@ -62,6 +83,7 @@ clearButton.addEventListener('click', ()=>{
     firstNumber = 0;
     secondNumber = 0;
     operator = '';
+    dotLimit = 1;
 });
 const equalSignButton = document.querySelector('#equal-sign');
 equalSignButton.addEventListener('click', () =>{
@@ -93,3 +115,6 @@ backSpaceButton.addEventListener('click',() =>{
 let firstNumber = 0;
 let secondNumber = 0;
 let operator = '';
+let dotLimit = 1;
+
+
