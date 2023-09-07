@@ -5,19 +5,55 @@ body{
     height: 100vh;
     background-color: grey;
     margin: 0px;
+    font-family:'Courier New', Courier, monospace;
 }
 .container{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 300px;
-    height: 400px;
-    background-color: red;
-}
-.btn{
+    width: 400px;
+    height: 620px;
+    background-color: darkkhaki;
+    border: 2px solid black;
     padding: 10px;
 }
+.btn{
+    width: 100px;
+    height: 100px;
+    font-family:'Courier New', Courier, monospace;
+    font-size: large;
+    margin: 1px;
+}
+.display{
+    min-height: 100px;
+    font-size: larger;
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: bisque;
+    border: 2px black solid;
+    margin: 4px;
+}
 #first-row{
-    
+    display: flex;
+}
+#second-row{
+    display: flex;
+}
+#third-row{
+    display: flex;
+}
+#fourth-row{
+    display: flex;
+}
+#fifth-row{
+    display: flex;
+}
+#zero{
+    width: 304px;
+}
+.clear:hover{
+    background-color: red;
 }
