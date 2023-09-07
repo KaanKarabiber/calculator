@@ -30,6 +30,7 @@ function operate(a, b, operator){
 function getDisplay(){
     return document.querySelector('.display');
 }
+/* for keyboard support. I will comeback to this later
 document.addEventListener('keydown', (event) => {
     const allowedKeys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '*', '/', '+', '.', 'Backspace', 'Enter'];
     if (allowedKeys.includes(event.key)) {
@@ -37,7 +38,7 @@ document.addEventListener('keydown', (event) => {
       let display = getDisplay();
       display.textContent += event.key;
     }
-  });
+}); */
 const buttons = document.querySelectorAll('.numbers, .operators');
 buttons.forEach(button => {
     button.addEventListener('click', (event) =>{
@@ -116,5 +117,3 @@ let firstNumber = 0;
 let secondNumber = 0;
 let operator = '';
 let dotLimit = 1;
-
-
