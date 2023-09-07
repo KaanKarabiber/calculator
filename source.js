@@ -97,6 +97,7 @@ equalSignButton.addEventListener('click', () =>{
         display.textContent = roundedTotal;
         secondNumber = 0;
         operator = '';
+        dotLimit = 0;
     }
     else{
         secondNumber = 0;
@@ -108,8 +109,10 @@ const backSpaceButton = document.querySelector('.backspace');
 backSpaceButton.addEventListener('click',() =>{
     let display = getDisplay();
     if(display.textContent.length > 0){
+        if (display.textContent.charAt(display.textContent.length - 1) === '.'){
+            dotLimit = 1;
+        }
         subString = display.textContent.substring(0, display.textContent.length - 1);
-        console.log(subString, display.textContent)
         display.textContent = subString;
     }
 });
