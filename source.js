@@ -57,10 +57,7 @@ buttons.forEach(button => {
             display.textContent += button.textContent;
             dotLimit = 0;
         }
-        else if(buttonText === '.'){
-            
-        }
-        else{
+        else if(buttonText !== '.'){
             display.textContent += button.textContent;
         }
     }); 
