@@ -5,7 +5,7 @@ body{
     height: 100vh;
     background-color: grey;
     margin: 0px;
-    font-family:'Courier New', Courier, monospace;
+    font-family: monospace;
 }
 .container{
     display: flex;
@@ -21,7 +21,7 @@ body{
 .btn{
     width: 100px;
     height: 100px;
-    font-family:'Courier New', Courier, monospace;
+    font-family: monospace;
     font-size: large;
     margin: 1px;
 }
